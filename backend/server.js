@@ -9,6 +9,11 @@ app.use(cors());
 const connectDB=require("./config/db")
 connectDB()
 
+app.use(express.json());
 
-const PORT = process.env.PORT || 7007;
+const adminRoutes=require('./routes/adminRoutes')
+
+app.use('/api/admin',adminRoutes)
+
+const PORT = process.env.PORT
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
