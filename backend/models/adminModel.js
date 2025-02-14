@@ -25,6 +25,7 @@ const adminSchema = new mongoose.Schema(
     {
         department: { type: String, required: [true, "Enter a department"] },
         year: { type: Number, required: [true, "Enter a year"] },
+        Semester:{type:Number,required:[true, "Enter a year"] },
         subject: { type: String, required: [true, "Enter a subject"] },
         courseCode: { type: String, required: [true, "Enter a course code"] },
         numberOfStudents: { type: Number, required: [true, "Enter number of students"] },
