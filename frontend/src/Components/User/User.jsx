@@ -1,13 +1,20 @@
 import { useState } from "react";
 import axios from "axios";
-import './User.css'
+import './User.css';
+
 export default function User() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
+    const [confirmNewPassword, setConfirmNewPassword] = useState("");
     const [isRegister, setIsRegister] = useState(true);
 
     const handleRegister = async () => {
+        if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            return;
+        }
         try {
             const response = await axios.post("http://localhost:7009/api/userRegister", { email, password });
             alert(response.data.message);
@@ -17,6 +24,10 @@ export default function User() {
     };
 
     const handleResetPassword = async () => {
+        if (newPassword !== confirmNewPassword) {
+            alert("New passwords do not match.");
+            return;
+        }
         try {
             const response = await axios.post("http://localhost:7009/api/userChange-password", { email, newPassword });
             alert(response.data.message);
@@ -36,21 +47,39 @@ export default function User() {
                 className="p-2 border rounded mb-2"
             />
             {isRegister ? (
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="p-2 border rounded mb-2"
-                />
+                <>
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="p-2 border rounded mb-2"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Confirm Password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        className="p-2 border rounded mb-2"
+                    />
+                </>
             ) : (
-                <input
-                    type="password"
-                    placeholder="New Password"
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    className="p-2 border rounded mb-2"
-                />
+                <>
+                    <input
+                        type="password"
+                        placeholder="New Password"
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        className="p-2 border rounded mb-2"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Confirm New Password"
+                        value={confirmNewPassword}
+                        onChange={(e) => setConfirmNewPassword(e.target.value)}
+                        className="p-2 border rounded mb-2"
+                    />
+                </>
             )}
             <button
                 onClick={isRegister ? handleRegister : handleResetPassword}
