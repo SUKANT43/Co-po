@@ -1,59 +1,83 @@
-/* General Page Styling */
+/* admin.css */
+
+/* General styling for the admin container */
 .admin-container {
-    max-width: 600px;
-    margin: 50px auto;
-    background: #f9f9f9;
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+/* Heading styling */
+.admin-container h1 {
     text-align: center;
     color: #333;
+    margin-bottom: 20px;
 }
 
-/* Form Styling */
+/* Form styling */
 .admin-form {
     display: flex;
     flex-direction: column;
+    gap: 15px;
 }
 
-label {
-    font-size: 14px;
+/* Label styling */
+.admin-form label {
+    display: flex;
+    flex-direction: column;
     font-weight: bold;
-    margin-bottom: 5px;
     color: #555;
 }
 
-input, select {
-    padding: 10px;
+/* Input and select styling */
+.admin-form input,
+.admin-form select {
+    padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    width: 100%;
+    border-radius: 4px;
     font-size: 14px;
+    margin-top: 5px;
 }
 
-input:focus, select:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+/* Nested sections (PT1, PT2, End Semester) */
+.admin-form h3 {
+    margin-top: 20px;
+    color: #444;
+    font-size: 18px;
 }
 
-/* Submit Button */
+/* Submit button styling */
 .submit-btn {
+    padding: 10px 20px;
     background-color: #007bff;
     color: white;
-    padding: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .submit-btn:hover {
     background-color: #0056b3;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    .admin-container {
+        padding: 10px;
+    }
+
+    .admin-form input,
+    .admin-form select {
+        font-size: 12px;
+    }
+
+    .submit-btn {
+        font-size: 14px;
+    }
 }

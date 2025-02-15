@@ -32,7 +32,7 @@ const adminSchema = new mongoose.Schema(
         copoId: { type: String, required: [true, "Enter a COPO ID"],  },
         stafName:{type: String, required: [true, "Enter a COPO ID"], },
         stafEmail:{type: String, required: [true, "Enter a COPO ID"], },
-        stafId:{type:String ,required: [true, "Enter a COPO ID"],unique:true},
+        staffId:{type:String ,required: [true, "Enter a COPO ID"],unique:true},
         pt1: [pt1Schema], 
         ip1: { type: Number, required: [true, "Enter IP1 value"] },
         pt2: [pt2Schema], 
