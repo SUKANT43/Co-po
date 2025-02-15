@@ -21,6 +21,7 @@ function Navbar() {
           <li><Link to="/admin" onClick={toggleSidebar}>Admin</Link></li>
           <li><Link to="/history" onClick={toggleSidebar}>History</Link></li>
           <li><Link to="/user" onClick={toggleSidebar}>Create Users</Link></li>
+          <li><Link to="/remarks" onClick={toggleSidebar}>Remarks</Link></li>
         </ul>
       </div>
     </>

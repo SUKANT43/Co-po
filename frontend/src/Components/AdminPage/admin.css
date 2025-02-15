@@ -1,75 +1,59 @@
-/* General container */
+/* General Page Styling */
 .admin-container {
     max-width: 600px;
-    margin: 40px auto;
+    margin: 50px auto;
+    background: #f9f9f9;
     padding: 20px;
-    background: #fff;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    font-family: 'Arial', sans-serif;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
 }
 
-/* Title */
-.admin-container h1 {
+h1 {
     text-align: center;
-    font-size: 24px;
     color: #333;
 }
 
-/* Form styling */
+/* Form Styling */
 .admin-form {
     display: flex;
     flex-direction: column;
 }
 
-/* Labels */
-.admin-form label {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
+label {
+    font-size: 14px;
     font-weight: bold;
+    margin-bottom: 5px;
     color: #555;
 }
 
-/* Input fields */
-.admin-form input,
-.admin-form select {
+input, select {
     padding: 10px;
-    margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 14px;
 }
 
-/* Read-only input fields */
-.admin-form input[readonly] {
-    background-color: #f3f3f3;
-    color: #777;
-    cursor: not-allowed;
+input:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Section headings */
-h3 {
-    margin-top: 20px;
-    color: #444;
-    font-size: 18px;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 5px;
-}
-
-/* Submit button */
+/* Submit Button */
 .submit-btn {
-    background: #007bff;
+    background-color: #007bff;
     color: white;
-    padding: 12px;
+    padding: 10px;
     border: none;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
-    margin-top: 20px;
-    transition: background 0.3s ease-in-out;
+    transition: background 0.3s ease;
 }
 
 .submit-btn:hover {
-    background: #0056b3;
+    background-color: #0056b3;
 }

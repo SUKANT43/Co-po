@@ -4,6 +4,8 @@ import AdminPage from "./Components/AdminPage/AdminPage";
 import History from "./Components/History/History";
 import User from "./Components/User/User";
 import Navbar from "./Components/Navbar/Navbar";
+import Remarks from "./Components/Remarks/Remarks";
+Remarks
 function App() {
   return (
     <Router>
@@ -18,6 +20,7 @@ function App() {
                 <Route path="/admin" element={<AdminPage />} />
                 <Route path="/history" element={<History />} />
                 <Route path="/user" element={<User />} />
+                <Route path="/remarks" element={<Remarks />} />
               </Routes>
             </>
           }
