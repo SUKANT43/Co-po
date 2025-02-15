@@ -23,22 +23,21 @@ const endSemesterSchema = new mongoose.Schema({
 
 const adminSchema = new mongoose.Schema(
     {
-        department: { type: String, required: [true, "Enter a department"] },
-        year: { type: Number, required: [true, "Enter a year"] },
-        Semester:{type:Number,required:[true, "Enter a year"] },
-        subject: { type: String, required: [true, "Enter a subject"] },
-        courseCode: { type: String, required: [true, "Enter a course code"] },
-        numberOfStudents: { type: Number, required: [true, "Enter number of students"] },
-        copoId: { type: String, required: [true, "Enter a COPO ID"],  },
-        stafName:{type: String, required: [true, "Enter a COPO ID"], },
-        stafEmail:{type: String, required: [true, "Enter a COPO ID"], },
-        staffId:{type:String ,required: [true, "Enter a COPO ID"],unique:true},
-        pt1: [pt1Schema], 
-        ip1: { type: Number, required: [true, "Enter IP1 value"] },
-        pt2: [pt2Schema], 
-        ip2: { type: Number,  required: [true, "Enter IP2 value"] },
-        endSemester: [endSemesterSchema] 
-
+        department: { type: String, required: true }, // Must be non-empty
+        year: { type: Number, required: true, min: 1, max: 4 }, // Must be between 1 and 4
+        semester: { type: Number, required: true, min: 1, max: 8 }, // Must be between 1 and 8
+        subject: { type: String, required: true }, // Must be non-empty
+        courseCode: { type: String, required: true }, // Must be non-empty
+        numberOfStudents: { type: Number, required: true, min: 1 }, // Must be at least 1
+        copoId: { type: String, required: true }, // Must be non-empty
+        stafName: { type: String, required: true }, // Must be non-empty
+        stafEmail: { type: String, required: true }, // Must be non-empty
+        stafId: { type: String, required: true, unique: true }, // Must be non-empty and unique
+        ip1: { type: Number, required: true, min: 0 }, // Must be non-negative
+        ip2: { type: Number, required: true, min: 0 }, // Must be non-negative
+        pt1: [pt1Schema], // Must be an array of objects
+        pt2: [pt2Schema], // Must be an array of objects
+        endSemester: [endSemesterSchema], // Must be an array of objects
     },
     { timestamps: true }
 );
