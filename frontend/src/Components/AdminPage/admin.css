@@ -1,83 +1,76 @@
-/* admin.css */
+/* General Styles */
+body {
+    background-color: #121826;
+    color: #d1d5db;
+    font-family: 'Arial', sans-serif;
+}
 
-/* General styling for the admin container */
+/* Admin Container */
 .admin-container {
-    max-width: 800px;
-    margin: 0 auto;
+    width: 80%;
+    margin: 40px auto;
     padding: 20px;
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #1f2937;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Heading styling */
-.admin-container h1 {
+/* Title */
+h1, h3 {
     text-align: center;
-    color: #333;
-    margin-bottom: 20px;
+    color: #f3f4f6;
 }
 
-/* Form styling */
+/* Form Styling */
 .admin-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-/* Label styling */
-.admin-form label {
-    display: flex;
-    flex-direction: column;
-    font-weight: bold;
-    color: #555;
-}
-
-/* Input and select styling */
-.admin-form input,
-.admin-form select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+/* Labels */
+label {
     font-size: 14px;
+    font-weight: 500;
+}
+
+/* Inputs and Select Fields */
+input, select {
+    width: 100%;
+    padding: 10px;
     margin-top: 5px;
+    background-color: #374151;
+    color: #f3f4f6;
+    border: 1px solid #4b5563;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
-/* Nested sections (PT1, PT2, End Semester) */
-.admin-form h3 {
-    margin-top: 20px;
-    color: #444;
-    font-size: 18px;
+/* Inputs on focus */
+input:focus, select:focus {
+    border-color: #6366f1;
+    outline: none;
 }
 
-/* Submit button styling */
+/* Submit Button */
 .submit-btn {
-    padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #6366f1;
     color: white;
+    padding: 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease-in-out;
 }
 
 .submit-btn:hover {
-    background-color: #0056b3;
+    background-color: #4f46e5;
 }
 
-/* Responsive design for smaller screens */
-@media (max-width: 600px) {
-    .admin-container {
-        padding: 10px;
-    }
-
-    .admin-form input,
-    .admin-form select {
-        font-size: 12px;
-    }
-
-    .submit-btn {
-        font-size: 14px;
-    }
+/* Dark UI for disabled elements */
+input:disabled {
+    background-color: #1e293b;
+    color: #9ca3af;
+    border: 1px solid #4b5563;
 }

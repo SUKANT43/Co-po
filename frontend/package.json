@@ -12,10 +12,12 @@
   "dependencies": {
     "@react-oauth/google": "^0.12.1",
     "axios": "^1.7.9",
+    "framer-motion": "^12.4.3",
     "jwt-decode": "^4.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.1.5"
+    "react-router-dom": "^7.1.5",
+    "react-toastify": "^11.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",

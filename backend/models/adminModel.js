@@ -29,10 +29,10 @@ const adminSchema = new mongoose.Schema(
         subject: { type: String, required: true }, // Must be non-empty
         courseCode: { type: String, required: true }, // Must be non-empty
         numberOfStudents: { type: Number, required: true, min: 1 }, // Must be at least 1
-        copoId: { type: String, required: true }, // Must be non-empty
+        copoId: { type: String, required: true,unique: true }, // Must be non-empty
         stafName: { type: String, required: true }, // Must be non-empty
         stafEmail: { type: String, required: true }, // Must be non-empty
-        stafId: { type: String, required: true, unique: true }, // Must be non-empty and unique
+        stafId: { type: String, required: true,  }, // Must be non-empty and unique
         ip1: { type: Number, required: true, min: 0 }, // Must be non-negative
         ip2: { type: Number, required: true, min: 0 }, // Must be non-negative
         pt1: [pt1Schema], // Must be an array of objects

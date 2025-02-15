@@ -1,66 +1,85 @@
+/* Navbar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: #1f2937;
+  color: #d1d5db;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  transition: transform 0.3s ease;
+  z-index: 100;
+  transform: translateX(-100%);
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar .close-btn {
+  background: none;
+  color: #f3f4f6;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.nav-links li {
+  margin: 20px 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #f3f4f6;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #6366f1;
+}
+
+/* Menu Button */
 .menu-btn {
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    font-size: 24px;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  /* Sidebar styling */
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: -250px; /* Hidden initially */
-    width: 250px;
-    height: 100%;
-    background-color: #007bff;
-    padding-top: 60px;
-    transition: 0.3s;
-  }
-  
-  /* Show sidebar when open */
-  .sidebar.open {
-    left: 0;
-  }
-  
-  /* Close button */
-  .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  /* Sidebar links */
-  .nav-links {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .nav-links li {
-    padding: 15px;
-    text-align: center;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: white;
-    font-size: 18px;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  .nav-links a:hover {
-    background-color: white;
-    color: #007bff;
-  }
-  
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #374151;
+  color: #f3f4f6;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  z-index: 101;
+}
+
+.menu-btn:hover {
+  background-color: #4b5563;
+}
+
+/* Logo Styling */
+.logo {
+  color: #9ca3af;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  display: block;
+  margin-bottom: 30px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: #6b7280;
+}
