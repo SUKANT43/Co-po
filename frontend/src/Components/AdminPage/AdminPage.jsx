@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./admin.css";
 
 const initialState = {
   department: "CSE",
@@ -25,17 +26,6 @@ const initialState = {
 
 const AdminPage = () => {
   const [formData, setFormData] = useState(initialState);
-  const [logoColor, setLogoColor] = useState("#ffffff");
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setLogoColor(scrollY > 100 ? "#d1d5db" : "#ffffff");
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Handle form changes
   const handleChange = (e) => {
@@ -94,10 +84,8 @@ const AdminPage = () => {
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
 
       <div className="card admin-card">
-        <h1 className="text-center mb-4" style={{ color: logoColor }}>
-          Admin Panel
-        </h1>
-        <form onSubmit={handleSubmit}>
+      <h1 className="heading">Admin Panel</h1>
+      <form onSubmit={handleSubmit}>
           {/* Department & Year */}
           <div className="row mb-4">
             <div className="col-md-6 mb-3 mb-md-0">
@@ -285,3 +273,5 @@ const AdminPage = () => {
 };
 
 export default AdminPage;
+
+

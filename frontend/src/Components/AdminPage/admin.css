@@ -1,76 +1,46 @@
-/* General Styles */
-body {
-    background-color: #121826;
-    color: #d1d5db;
-    font-family: 'Arial', sans-serif;
+.admin-bg {
+  background-color: rgb(15, 23, 42);
+  padding: 20px;
 }
 
-/* Admin Container */
-.admin-container {
-    width: 80%;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #1f2937;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+.admin-card {
+  max-width: 800px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: hsl(217, 33%, 17%);
 }
 
-/* Title */
-h1, h3 {
-    text-align: center;
-    color: #f3f4f6;
+.admin-label {
+  font-weight: 500;
+  color: #f8f9fa;
+  margin-bottom: 5px;
 }
 
-/* Form Styling */
-.admin-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.admin-input {
+  background-color: rgb(15, 23, 42);
+  color: white;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  padding: 10px;
+  font-size: 16px;
 }
 
-/* Labels */
-label {
-    font-size: 14px;
-    font-weight: 500;
+.admin-submit-btn {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
 }
 
-/* Inputs and Select Fields */
-input, select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    background-color: #374151;
-    color: #f3f4f6;
-    border: 1px solid #4b5563;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-/* Inputs on focus */
-input:focus, select:focus {
-    border-color: #6366f1;
-    outline: none;
-}
-
-/* Submit Button */
-.submit-btn {
-    background-color: #6366f1;
+.heading{
     color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
+    text-align: center;
 }
-
-.submit-btn:hover {
-    background-color: #4f46e5;
-}
-
-/* Dark UI for disabled elements */
-input:disabled {
-    background-color: #1e293b;
-    color: #9ca3af;
-    border: 1px solid #4b5563;
+.admin-submit-btn:hover {
+  background-color: #0056b3;
 }

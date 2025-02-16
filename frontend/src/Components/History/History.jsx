@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
+import { ToastContainer, toast } from "react-toastify";
+import { FaSearch, FaEdit, FaTrash } from "react-icons/fa";
+import "react-toastify/dist/ReactToastify.css";
+import "./history.css";
+
 function History() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -15,11 +21,10 @@ function History() {
     copoId: "",
     stafName: "",
     stafEmail: "",
-    stafId: ""
+    stafId: "",
   });
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Fetch all data on component load
   useEffect(() => {
     fetchData();
   }, []);
@@ -38,10 +43,11 @@ function History() {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
         await axios.delete(`http://localhost:7007/api/admin/deleteData/${id}`);
-        alert("Record deleted successfully!");
+        toast.success("Record deleted successfully!");
         fetchData();
       } catch (error) {
         console.error("Error deleting record:", error);
+        toast.error("Failed to delete record. Please try again.");
       }
     }
   };
@@ -63,11 +69,12 @@ function History() {
         `http://localhost:7007/api/admin/updateData/${editForm._id}`,
         editForm
       );
-      alert("Record updated successfully!");
+      toast.success("Record updated successfully!");
       setIsEditing(false);
       fetchData();
     } catch (error) {
       console.error("Error updating record:", error);
+      toast.error("Failed to update record. Please try again.");
     }
   };
 
@@ -75,9 +82,8 @@ function History() {
     const value = e.target.value;
     setSearchTerm(value);
 
-    // Filter data by copoId
     if (value.trim() === "") {
-      setFilteredData(data); // If search is empty, show all data
+      setFilteredData(data);
     } else {
       const filtered = data.filter((item) =>
         item.copoId.toLowerCase().includes(value.toLowerCase())
@@ -87,18 +93,123 @@ function History() {
   };
 
   return (
-    <div>
+    <motion.div
+      className="history-container"
+      initial={{ x: "-100vw" }}
+      animate={{ x: 0 }}
+      transition={{ type: "spring", stiffness: 70 }}
+    >
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
+
       <h2>History</h2>
 
-      {/* Search Bar */}
-      <input
-        type="text"
-        placeholder="Search by CO-PO ID"
-        value={searchTerm}
-        onChange={handleSearch}
-      />
+      {/* Edit Form Always at the Top */}
+      {isEditing && (
+        <motion.div
+          className="edit-form"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: "spring", stiffness: 70 }}
+        >
+          <h3>Edit Record</h3>
+          <form onSubmit={handleUpdate}>
+            <input
+              type="text"
+              name="department"
+              value={editForm.department}
+              onChange={handleInputChange}
+              placeholder="Department"
+            />
+            <input
+              type="number"
+              name="year"
+              value={editForm.year}
+              onChange={handleInputChange}
+              placeholder="Year"
+            />
+            <input
+              type="number"
+              name="semester"
+              value={editForm.semester}
+              onChange={handleInputChange}
+              placeholder="Semester"
+            />
+            <input
+              type="text"
+              name="subject"
+              value={editForm.subject}
+              onChange={handleInputChange}
+              placeholder="Subject"
+            />
+            <input
+              type="text"
+              name="courseCode"
+              value={editForm.courseCode}
+              onChange={handleInputChange}
+              placeholder="Course Code"
+            />
+            <input
+              type="number"
+              name="numberOfStudents"
+              value={editForm.numberOfStudents}
+              onChange={handleInputChange}
+              placeholder="No. of Students"
+            />
+            <input
+              type="text"
+              name="copoId"
+              value={editForm.copoId}
+              onChange={handleInputChange}
+              placeholder="CO-PO ID"
+            />
+            <input
+              type="text"
+              name="stafName"
+              value={editForm.stafName}
+              onChange={handleInputChange}
+              placeholder="Staff Name"
+            />
+            <input
+              type="email"
+              name="stafEmail"
+              value={editForm.stafEmail}
+              onChange={handleInputChange}
+              placeholder="Staff Email"
+            />
+            <input
+              type="text"
+              name="stafId"
+              value={editForm.stafId}
+              onChange={handleInputChange}
+              placeholder="Staff ID"
+            />
+            <button type="submit" className="update-btn">
+              Update
+            </button>
+            <button
+              type="button"
+              className="cancel-btn"
+              onClick={() => setIsEditing(false)}
+            >
+              Cancel
+            </button>
+          </form>
+        </motion.div>
+      )}
 
-      <table border="1">
+      {/* Search Bar */}
+      <div className="search-bar">
+        <FaSearch className="search-icon" />
+        <input
+          type="text"
+          placeholder="Search by CO-PO ID"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+      </div>
+
+      {/* Data Table */}
+      <table>
         <thead>
           <tr>
             <th>Department</th>
@@ -111,7 +222,8 @@ function History() {
             <th>Staff Name</th>
             <th>Staff Email</th>
             <th>Staff ID</th>
-            <th>Actions</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -128,95 +240,20 @@ function History() {
               <td>{item.stafEmail}</td>
               <td>{item.stafId}</td>
               <td>
-                <button onClick={() => handleEdit(item)}>Edit</button>
-                <button onClick={() => handleDelete(item._id)}>Delete</button>
+                <button className="edit-btn" onClick={() => handleEdit(item)}>
+                  <FaEdit />
+                </button>
+              </td>
+              <td>
+                <button className="delete-btn" onClick={() => handleDelete(item._id)}>
+                  <FaTrash />
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-
-      {/* Edit Form */}
-      {isEditing && (
-        <form onSubmit={handleUpdate}>
-          <h3>Edit Record</h3>
-          <input
-            type="text"
-            name="department"
-            value={editForm.department}
-            onChange={handleInputChange}
-            placeholder="Department"
-          />
-          <input
-            type="number"
-            name="year"
-            value={editForm.year}
-            onChange={handleInputChange}
-            placeholder="Year"
-          />
-          <input
-            type="number"
-            name="semester"
-            value={editForm.semester}
-            onChange={handleInputChange}
-            placeholder="Semester"
-          />
-          <input
-            type="text"
-            name="subject"
-            value={editForm.subject}
-            onChange={handleInputChange}
-            placeholder="Subject"
-          />
-          <input
-            type="text"
-            name="courseCode"
-            value={editForm.courseCode}
-            onChange={handleInputChange}
-            placeholder="Course Code"
-          />
-          <input
-            type="number"
-            name="numberOfStudents"
-            value={editForm.numberOfStudents}
-            onChange={handleInputChange}
-            placeholder="No. of Students"
-          />
-          <input
-            type="text"
-            name="copoId"
-            value={editForm.copoId}
-            onChange={handleInputChange}
-            placeholder="CO-PO ID"
-          />
-          <input
-            type="text"
-            name="stafName"
-            value={editForm.stafName}
-            onChange={handleInputChange}
-            placeholder="Staff Name"
-          />
-          <input
-            type="email"
-            name="stafEmail"
-            value={editForm.stafEmail}
-            onChange={handleInputChange}
-            placeholder="Staff Email"
-          />
-          <input
-            type="text"
-            name="stafId"
-            value={editForm.stafId}
-            onChange={handleInputChange}
-            placeholder="Staff ID"
-          />
-          <button type="submit">Update</button>
-          <button type="button" onClick={() => setIsEditing(false)}>
-            Cancel
-          </button>
-        </form>
-      )}
-    </div>
+    </motion.div>
   );
 }
 

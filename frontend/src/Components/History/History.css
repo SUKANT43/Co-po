@@ -1,69 +1,114 @@
-.history-container {
-  background-color: rgb(31, 41, 55);
+/* history.css */
+body {
+  background-color: rgb(15, 23, 42);
   color: white;
+  font-family: Arial, sans-serif;
+}
+
+.history-container {
+  background-color: rgb(30, 41, 59);
   padding: 20px;
   border-radius: 10px;
   max-width: 90%;
   margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.edit-form input {
-  display: block;
+h2 {
+  text-align: center;
+  color: #fff;
+}
+
+table {
   width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th,
+table td {
   padding: 10px;
-  margin: 10px 0;
+  text-align: center;
+  border: 1px solid #444;
 }
 
-.edit-form button {
-  padding: 10px;
-  margin: 5px;
-  cursor: pointer;
+table th {
+  background-color: rgb(51, 65, 85);
+  color: #fff;
 }
 
-.edit-btn {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
+table tr:nth-child(even) {
+  background-color: rgb(30, 41, 59);
 }
 
-.delete-btn {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
+table tr:nth-child(odd) {
+  background-color: rgb(51, 65, 85);
 }
 
 .search-bar {
-  position: relative;
+  display: flex;
+  align-items: center;
   margin-bottom: 20px;
-}
-
-.search-bar input {
-  padding: 10px;
-  width: 100%;
-}
-
-.filter-icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-
-.alert {
-  padding: 10px;
-  margin-bottom: 10px;
+  background-color: rgb(51, 65, 85);
+  padding: 5px 10px;
   border-radius: 5px;
 }
 
-.alert.success {
-  background-color: #4caf50;
+.search-bar input {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  margin-left: 10px;
 }
 
-.alert.error {
-  background-color: #f44336;
+.search-icon {
+  color: #9ca3af;
+}
+
+.edit-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(51, 65, 85);
+  color: white;
+}
+
+.edit-form button {
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.update-btn {
+  background-color: rgb(34, 197, 94);
+  color: white;
+}
+
+.cancel-btn {
+  background-color: rgb(239, 68, 68);
+  color: white;
+}
+
+.edit-btn,
+.delete-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 1.2em;
+}
+
+.edit-btn:hover {
+  color: rgb(34, 197, 94);
+}
+
+.delete-btn:hover {
+  color: rgb(239, 68, 68);
 }

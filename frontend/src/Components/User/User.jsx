@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
 import './User.css';
 
 export default function User() {
@@ -9,90 +10,110 @@ export default function User() {
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
     const [isRegister, setIsRegister] = useState(true);
+    const [alertMessage, setAlertMessage] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
+
+    const showAlertMessage = (message) => {
+        setAlertMessage(message);
+        setShowAlert(true);
+        setTimeout(() => {
+            setShowAlert(false);
+        }, 3000); // Alert disappears after 3 seconds
+    };
 
     const handleRegister = async () => {
         if (password !== confirmPassword) {
-            alert("Passwords do not match.");
+            showAlertMessage("Passwords do not match.");
             return;
         }
         try {
             const response = await axios.post("http://localhost:7009/api/userRegister", { email, password });
-            alert(response.data.message);
+            showAlertMessage(response.data.message);
         } catch (error) {
-            alert(error.response.data.message);
+            showAlertMessage(error.response?.data?.message || "Registration failed.");
         }
     };
 
     const handleResetPassword = async () => {
         if (newPassword !== confirmNewPassword) {
-            alert("New passwords do not match.");
+            showAlertMessage("New passwords do not match.");
             return;
         }
         try {
             const response = await axios.post("http://localhost:7009/api/userChange-password", { email, newPassword });
-            alert(response.data.message);
+            showAlertMessage(response.data.message);
         } catch (error) {
-            alert(error.response.data.message);
+            showAlertMessage(error.response?.data?.message || "Password reset failed.");
         }
     };
 
     return (
-        <div className="flex flex-col items-center p-4">
-            <h2 className="text-2xl font-bold mb-4">{isRegister ? "Create Account" : "Reset Password"}</h2>
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="p-2 border rounded mb-2"
-            />
-            {isRegister ? (
-                <>
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="p-2 border rounded mb-2"
-                    />
-                    <input
-                        type="password"
-                        placeholder="Confirm Password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        className="p-2 border rounded mb-2"
-                    />
-                </>
-            ) : (
-                <>
-                    <input
-                        type="password"
-                        placeholder="New Password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        className="p-2 border rounded mb-2"
-                    />
-                    <input
-                        type="password"
-                        placeholder="Confirm New Password"
-                        value={confirmNewPassword}
-                        onChange={(e) => setConfirmNewPassword(e.target.value)}
-                        className="p-2 border rounded mb-2"
-                    />
-                </>
+        <div className="container-fluid d-flex justify-content-center align-items-center min-vh-100 main-bg">
+            <div className="form-container p-4 rounded shadow-lg text-center">
+                <h2 className="mb-4 text-light">
+                    {isRegister ? "Create Account" : "Reset Password"}
+                </h2>
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="form-control mb-3"
+                />
+                {isRegister ? (
+                    <>
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="form-control mb-3"
+                        />
+                        <input
+                            type="password"
+                            placeholder="Confirm Password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            className="form-control mb-3"
+                        />
+                    </>
+                ) : (
+                    <>
+                        <input
+                            type="password"
+                            placeholder="New Password"
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            className="form-control mb-3"
+                        />
+                        <input
+                            type="password"
+                            placeholder="Confirm New Password"
+                            value={confirmNewPassword}
+                            onChange={(e) => setConfirmNewPassword(e.target.value)}
+                            className="form-control mb-3"
+                        />
+                    </>
+                )}
+                <button
+                    onClick={isRegister ? handleRegister : handleResetPassword}
+                    className="btn btn-primary w-100 mb-3"
+                >
+                    {isRegister ? "Register" : "Reset Password"}
+                </button>
+                <button
+                    onClick={() => setIsRegister(!isRegister)}
+                    className="btn btn-link w-100 text-center text-info"
+                >
+                    {isRegister ? "Forgot Password?" : "Back to Register"}
+                </button>
+            </div>
+
+            {showAlert && (
+                <div className="custom-alert slide-in">
+                    {alertMessage}
+                </div>
             )}
-            <button
-                onClick={isRegister ? handleRegister : handleResetPassword}
-                className="p-2 bg-blue-500 text-white rounded"
-            >
-                {isRegister ? "Register" : "Reset Password"}
-            </button>
-            <button
-                onClick={() => setIsRegister(!isRegister)}
-                className="mt-4 text-blue-500 underline"
-            >
-                {isRegister ? "Forgot Password?" : "Back to Register"}
-            </button>
         </div>
     );
 }
