@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./admin.css";
-
+import Top from "../Top/Top";
 const initialState = {
   department: "CSE",
   year: 1,
@@ -82,9 +82,9 @@ const AdminPage = () => {
       transition={{ type: "spring", stiffness: 70 }}
     >
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
-
+      
       <div className="card admin-card">
-      <h1 className="heading">Admin Panel</h1>
+      <h1 className="heading">New Record</h1>
       <form onSubmit={handleSubmit}>
           {/* Department & Year */}
           <div className="row mb-4">

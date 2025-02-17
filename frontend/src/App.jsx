@@ -5,7 +5,7 @@ import History from "./Components/History/History";
 import User from "./Components/User/User";
 import Navbar from "./Components/Navbar/Navbar";
 import Remarks from "./Components/Remarks/Remarks";
-Remarks
+import Top from "./Components/Top/Top";
 function App() {
   return (
     <Router>
@@ -15,6 +15,7 @@ function App() {
           path="/*"
           element={
             <>
+            <Top/>
               <Navbar />
               <Routes>
                 <Route path="/admin" element={<AdminPage />} />

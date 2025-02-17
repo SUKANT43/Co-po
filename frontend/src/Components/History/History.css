@@ -3,6 +3,7 @@ body {
   background-color: rgb(15, 23, 42);
   color: white;
   font-family: Arial, sans-serif;
+
 }
 
 .history-container {
@@ -12,6 +13,7 @@ body {
   max-width: 90%;
   margin: 20px auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 150px;
 }
 
 h2 {

@@ -12,6 +12,7 @@
   transition: transform 0.3s ease;
   z-index: 100;
   transform: translateX(-100%);
+  margin-top: 60px;
 }
 
 .sidebar.open {
@@ -51,6 +52,7 @@
 
 /* Menu Button */
 .menu-btn {
+  margin-top: 50px;
   position: fixed;
   top: 20px;
   left: 20px;
