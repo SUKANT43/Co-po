@@ -3,7 +3,7 @@ import React from 'react'
 function Remarks() {
   return (
     <div>
-      Remarks
+      <h1>Page is Not created</h1>
     </div>
   )
 }

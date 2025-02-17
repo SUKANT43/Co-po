@@ -75,3 +75,42 @@ body {
         transform: scale(1);
     }
 }
+
+.custom-alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.custom-alert.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.custom-alert.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}

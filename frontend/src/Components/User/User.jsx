@@ -11,39 +11,49 @@ export default function User() {
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
     const [isRegister, setIsRegister] = useState(true);
     const [alertMessage, setAlertMessage] = useState("");
+    const [alertType, setAlertType] = useState(""); // 'success' or 'error'
     const [showAlert, setShowAlert] = useState(false);
 
-    const showAlertMessage = (message) => {
+    const showAlertMessage = (message, type) => {
         setAlertMessage(message);
+        setAlertType(type); // success or error
         setShowAlert(true);
         setTimeout(() => {
             setShowAlert(false);
-        }, 3000); // Alert disappears after 3 seconds
+        }, 4000); // Alert disappears after 4 seconds
     };
 
     const handleRegister = async () => {
         if (password !== confirmPassword) {
-            showAlertMessage("Passwords do not match.");
+            showAlertMessage("Passwords do not match.", "error");
             return;
         }
         try {
             const response = await axios.post("http://localhost:7009/api/userRegister", { email, password });
-            showAlertMessage(response.data.message);
+            showAlertMessage(response.data.message, "success");
+            // Clear fields after successful registration
+            setEmail("");
+            setPassword("");
+            setConfirmPassword("");
         } catch (error) {
-            showAlertMessage(error.response?.data?.message || "Registration failed.");
+            showAlertMessage(error.response?.data?.message || "Registration failed.", "error");
         }
     };
 
     const handleResetPassword = async () => {
         if (newPassword !== confirmNewPassword) {
-            showAlertMessage("New passwords do not match.");
+            showAlertMessage("New passwords do not match.", "error");
             return;
         }
         try {
             const response = await axios.post("http://localhost:7009/api/userChange-password", { email, newPassword });
-            showAlertMessage(response.data.message);
+            showAlertMessage(response.data.message, "success");
+            // Clear fields after successful password reset
+            setEmail("");
+            setNewPassword("");
+            setConfirmNewPassword("");
         } catch (error) {
-            showAlertMessage(error.response?.data?.message || "Password reset failed.");
+            showAlertMessage(error.response?.data?.message || "Password reset failed.", "error");
         }
     };
 
@@ -110,9 +120,14 @@ export default function User() {
             </div>
 
             {showAlert && (
-                <div className="custom-alert slide-in">
+                <motion.div
+                    className={`custom-alert ${alertType === "success" ? "alert-success" : "alert-error"} slide-in`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                >
                     {alertMessage}
-                </div>
+                </motion.div>
             )}
         </div>
     );
